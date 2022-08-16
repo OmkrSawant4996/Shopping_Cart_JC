@@ -10,22 +10,20 @@ namespace Shopping_Cart
         {
             List<ProductDetails> productList = new List<ProductDetails>();
 
-
-
             bool user = true;
             while (user)
 
             {
                 Console.WriteLine("Enter your choice.");
-                Console.WriteLine(" 1.Add product \n 2.Remove product \n 3.Update program \n 4.View product \n 5.Exit ");
+                Console.WriteLine("1.Add product \n2.Remove product \n3.Update program \n4.View product \n5.Exit ");
                 Console.WriteLine("Please select from given number (1:5) : ");
                 int UserNumber = int.Parse(Console.ReadLine());
                 Console.Clear();
-
+                ProductDetails product1 = new ProductDetails();
 
                 if (UserNumber == 1)
                 {
-                    ProductDetails product1 = new ProductDetails();
+
                     Console.WriteLine("Your choice is Add product ");
                     Console.WriteLine("Enter product name: ");
                     string name = Console.ReadLine();
@@ -46,34 +44,53 @@ namespace Shopping_Cart
                     Console.WriteLine("Your choice is Remove product ");
                     Console.WriteLine("Enter product name: ");
                     string name = (Console.ReadLine());
+
+                    for (int i = 0; i < productList.Count; i++)
+                    {
+                        if (name == productList[i].ProductName)
+                        {
+                            productList.RemoveAt(i);
+                        }
+                    }
                     if (name != null)
                     {
-                        productList.RemoveAt(0);
                         Console.WriteLine("product removed successfully.");
                     }
                     else
                     {
                         Console.WriteLine("please enter a product");
                     }
-
-
                     Console.ReadLine();
                     Console.Clear();
 
                 }
                 else if (UserNumber == 3)
                 {
-                    //Console.WriteLine("Your choice is Update product");
+                    Console.WriteLine("Your choice is Update product");
 
-                    //Console.WriteLine("Enter product name :");
-                    //string name = Console.ReadLine();
-                    //if (name == )
-                    //{
+                    Console.WriteLine("Enter product name :");
+                    string name = Console.ReadLine();
 
-                    //}
+                    for (int i = 0; i < productList.Count; i++)
+                    {
+                        if (name == productList[i].ProductName)
+                        {
+                            Console.WriteLine("Please enter updated product price : ");
+                            double updatePrice = double.Parse(Console.ReadLine());
+                            product1.ProductPrice = updatePrice;
+                            productList[i].ProductPrice = updatePrice;
+                        }
+                    }
+                    if (name != null)
+                    {
+                        Console.WriteLine("Product updated succesfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product not Exist...!");
+                    }
 
-                    //Console.WriteLine("Please enter updated product name : ");
-                    //Console.WriteLine("Please enter updated product price : ");
+                    Console.ReadLine();
 
                 }
 
@@ -81,7 +98,7 @@ namespace Shopping_Cart
                 {
                     Console.WriteLine("Your choice is View");
                     Console.WriteLine("product name           product price ");
-                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine("==============================================");
                     foreach (var product in productList)
                     {
                         Console.WriteLine((product.ProductName + "                     " + product.ProductPrice));
